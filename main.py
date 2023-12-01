@@ -1,5 +1,6 @@
-from PyQt6.QtWidgets import QApplication, QLabel, QWidget, QGridLayout, \
-     QLineEdit,QPushButton, QComboBox, QMainWindow, QTableWidget,QTableWidgetItem
+from PyQt6.QtWidgets import QApplication,\
+QMainWindow, QTableWidget,QTableWidgetItem
+
 from PyQt6.QtGui import QAction
 import sys
 import sqlite3
@@ -38,8 +39,8 @@ class MainWindow(QMainWindow):
 
 
 app = QApplication(sys.argv)
-speed_calculator = MainWindow()
-speed_calculator.load_data()
-speed_calculator.show()
+student_management_system = MainWindow()
+student_management_system.load_data()
+student_management_system.show()
 sys.exit(app.exec())
 
