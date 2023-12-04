@@ -25,6 +25,8 @@ class MainWindow(QMainWindow):
         self.table.setHorizontalHeaderLabels(("Id", "Name","Course","Mobile"))
         self.table.verticalHeader().setVisible(False)
         self.setCentralWidget(self.table)
+        self.setFixedWidth(400)
+        self.setFixedHeight(400)
 
 
 
