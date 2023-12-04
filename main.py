@@ -1,5 +1,5 @@
-from PyQt6.QtWidgets import QApplication,\
-QMainWindow, QTableWidget,QTableWidgetItem, QDialog
+from PyQt6.QtWidgets import QApplication,QMainWindow, QTableWidget,QTableWidgetItem,\
+ QDialog, QVBoxLayout, QLineEdit, QComboBox, QPushButton
 
 from PyQt6.QtGui import QAction
 import sys
@@ -48,6 +48,26 @@ class InsertDialog(QDialog):
         self.setWindowTitle("Insert Student Data")
         self.setFixedWidth(300)
         self.setFixedHeight(300)
+
+        layout = QVBoxLayout()
+
+        student_name = QLineEdit()
+        student_name.setPlaceholderText("Name")
+        layout.addWidget(student_name)
+
+        course_name = QComboBox()
+        courses = ["Biology","Maths","Computer Science","Geography"]
+        course_name.addItems(courses)
+        layout.addWidget(course_name)
+
+        mobile = QLineEdit()
+        mobile.setPlaceholderText("Mobile")
+        layout.addWidget(mobile)
+
+        button = QPushButton("Register")
+
+
+        self.setLayout(layout)
 
 
 
