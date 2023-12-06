@@ -85,6 +85,8 @@ class InsertDialog(QDialog):
         connection.commit()
         cursor.close()
         connection.close()
+        student_management_system.load_data()
+
 
 
 app = QApplication(sys.argv)
