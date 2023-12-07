@@ -86,6 +86,10 @@ class InsertDialog(QDialog):
         cursor.close()
         connection.close()
         student_management_system.load_data()
+        self.accept()
+
+    def closing(self):
+        self.accept()
 
 
 
