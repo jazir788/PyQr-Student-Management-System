@@ -1,6 +1,6 @@
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QApplication,QMainWindow, QTableWidget,QTableWidgetItem,\
- QDialog, QVBoxLayout, QLineEdit, QComboBox, QPushButton
+ QDialog, QVBoxLayout, QLineEdit, QComboBox, QPushButton, QMessageBox
 
 from PyQt6.QtGui import QAction
 import sys
@@ -115,6 +115,7 @@ class SearchDialog(QDialog):
 
         button = QPushButton("Search")
         button.clicked.connect(self.search)
+        button.clicked.connect(self.search_records)
         layout.addWidget(button)
 
         self.setLayout(layout)
@@ -134,6 +135,31 @@ class SearchDialog(QDialog):
 
         cursor.close()
         connection.close()
+
+    def search_records(self):
+        name = self.student_name.text()
+        connection = sqlite3.connect("database.db")
+        try:
+            with connection:
+                cursor = connection.cursor()
+                query = cursor.execute("SELECT * FROM students WHERE UPPER(name) LIKE UPPER(?)", ('%' + name + '%',))
+                rows = list(query)
+                print(rows)
+                student_management_system.table.clearSelection()
+                for row_data in rows:
+                    student_id, student_name, course, mobile_number = row_data
+                    items = student_management_system.table.findItems(student_name, Qt.MatchFlag.MatchContains)
+
+                    for row in range(student_management_system.table.rowCount()):
+                        item = student_management_system.table.item(row, 1)
+                        if item and student_name in item.text():
+
+                            for column in range(student_management_system.table.columnCount()):
+                                student_management_system.table.item(row, column).setSelected(True)
+
+        finally:
+            connection.close()
+        self.close()
 
 
 app = QApplication(sys.argv)
