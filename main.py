@@ -157,6 +157,13 @@ class SearchDialog(QDialog):
                             for column in range(student_management_system.table.columnCount()):
                                 student_management_system.table.item(row, column).setSelected(True)
 
+                # Handle no matching records found with pop-up dialog.
+                if not rows:
+                    msg = QMessageBox()
+                    msg.setWindowTitle("No Records")
+                    msg.setText("No matching records found")
+                    msg.setIcon(QMessageBox.Icon.Warning)
+                    msg.exec()
         finally:
             connection.close()
         self.close()
