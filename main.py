@@ -111,8 +111,8 @@ class SearchDialog(QDialog):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Search Student")
-        self.setFixedWidth(300)
-        self.setFixedHeight(300)
+        self.setFixedWidth(500)
+        self.setFixedHeight(500)
 
         layout = QVBoxLayout()
         self.student_name = QLineEdit()
