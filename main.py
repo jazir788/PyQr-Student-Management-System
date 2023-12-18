@@ -41,9 +41,6 @@ class MainWindow(QMainWindow):
         self.statusbar = QStatusBar()
         self.setStatusBar(self.statusbar)
 
-        hello = QLabel("Hello there")
-        self.statusbar.addWidget(hello)
-
         self.table.cellClicked.connect(self.cell_clicked)
 
 
