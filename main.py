@@ -104,6 +104,8 @@ class EditDialog(QDialog):
         index = student_management_system.table.currentRow()
         student_name = student_management_system.table.item(index, 1).text()
 
+        self.student_id = student_management_system.table(index, 0).text()
+
 
         self.student_name = QLineEdit(student_name)
         self.student_name.setPlaceholderText("Name")
@@ -129,7 +131,16 @@ class EditDialog(QDialog):
         self.setLayout(layout)
 
     def update_student(self):
-        pass
+        connection = sqlite3.connect("database.db")
+        cursor = connection.cursor()
+        cursor.execute("UPDATE students SET name = ?, course = ?, mobile = ? WHERE id = ?",
+                       (self.student_name.text(), self.course_name.text(),
+                        self.mobile.text(), self.student_id ))
+        connection.commit()
+        cursor.close()
+        connection.close()
+
+
 
 
 class DeleteDialog(QDialog):
