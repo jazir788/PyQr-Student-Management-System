@@ -140,7 +140,7 @@ class EditDialog(QDialog):
         cursor.close()
         connection.close()
 
-
+        student_management_system.load_data()
 
 
 class DeleteDialog(QDialog):
