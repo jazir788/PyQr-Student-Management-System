@@ -1,6 +1,6 @@
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QApplication,QMainWindow, QTableWidget,QTableWidgetItem,\
- QDialog, QVBoxLayout, QLineEdit, QComboBox, QPushButton, QMessageBox, QToolBar, QStatusBar, QLabel
+ QDialog, QVBoxLayout, QLineEdit, QComboBox, QPushButton, QMessageBox, QToolBar, QStatusBar, QLabel, QGridLayout
 from PyQt6.QtGui import QAction, QIcon
 import sys
 import sqlite3
@@ -144,7 +144,22 @@ class EditDialog(QDialog):
 
 
 class DeleteDialog(QDialog):
-    pass
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("Delete Student Data")
+        self.setFixedWidth(300)
+        self.setFixedHeight(300)
+
+        layout = QGridLayout()
+        confirmation = QLabel("Are you sure you want to delete")
+        yes = QPushButton("Yes")
+        no = QPushButton("No")
+
+        layout.addWidget(confirmation, 0, 0, 1, 2)
+        layout.addWidget(yes, 1, 0)
+        layout.addWidget(no, 1, 1)
+        self.setLayout(layout)
+
 
 
 
