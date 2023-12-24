@@ -160,6 +160,27 @@ class DeleteDialog(QDialog):
         layout.addWidget(no, 1, 1)
         self.setLayout(layout)
 
+        yes.clicked.connect(self.delete_student)
+
+    def delete_student(self):
+        index = student_management_system.table.currentRow()
+        student_id = student_management_system.table.item(index, 0).text()
+
+        connection = sqlite3.connect("database.db")
+        cursor = connection.cursor()
+        cursor.execute("DELETE from students WHERE id = ?", (student_id, ))
+        connection.commit()
+        cursor.close()
+        connection.close()
+
+        student_management_system.load_data()
+
+        self.close()
+
+        confirmation_widget = QMessageBox()
+        confirmation_widget.setWindowTitle("Success")
+        confirmation_widget.setText("The record was deleted successfully")
+        confirmation_widget.exec()
 
 
 
