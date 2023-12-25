@@ -20,6 +20,9 @@ class MainWindow(QMainWindow):
 
         about_action = QAction("About", self)
         help_menu_item.addAction(about_action)
+        about_action.setMenuRole(QAction.MenuRole.NoRole)
+
+
         search_action  = QAction(QIcon("icons/search.png"),"Search", self)
         edit_menu_item.addAction(search_action)
         search_action.triggered.connect(self.search)
